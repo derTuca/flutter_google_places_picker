@@ -1,8 +1,8 @@
 name: google_places_picker
 description: A new flutter plugin project.
-version: 0.0.1
-author:
-homepage:
+version: 0.0.2
+author: Alexandru Tuca <salexandru.tuca@outlook.com>
+homepage: https://github.com/derTuca/flutter_google_places_picker
 
 dependencies:
   flutter:
@@ -10,7 +10,8 @@ dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
-
+environment:
+    sdk: ">=1.19.0 <2.0.0"
 # The following section is specific to Flutter.
 flutter:
   plugin:
