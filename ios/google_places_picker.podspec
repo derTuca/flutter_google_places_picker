@@ -3,14 +3,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'google_places_picker'
-  s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.version          = '0.0.3'
+  s.summary          = 'Flutter plugin for Google Places and Autocomplete'
   s.description      = <<-DESC
-A new flutter plugin project.
+  Flutter plugin for Google Places and Autocomplete
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/derTuca/flutter_google_places_picker'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Alexandru Tuca' => 'salexandru.tuca@outlook.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
@@ -18,7 +18,7 @@ A new flutter plugin project.
   s.dependency 'GooglePlaces'
   s.dependency 'GooglePlacePicker'
   s.dependency 'GoogleMaps'
-  
+  s.static_framework = true
   s.ios.deployment_target = '8.0'
 end
 

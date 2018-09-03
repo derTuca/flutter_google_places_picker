@@ -1,3 +1,3 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.5] - 2018-09-03
 
-* TODO: Describe initial release.
+* Updated sdk dependency for flutter 0.6.0
