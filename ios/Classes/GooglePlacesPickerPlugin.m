@@ -29,6 +29,7 @@ UIViewController *vc;
 }
 
 -(void)showPlacePicker {
+    
     GMSPlacePickerConfig *config = [[GMSPlacePickerConfig alloc] initWithViewport:nil];
     GMSPlacePickerViewController *placePicker = [[GMSPlacePickerViewController alloc] initWithConfig:config];
     placePicker.delegate = self;
@@ -50,9 +51,12 @@ UIViewController *vc;
                                @"latitude" : [NSString stringWithFormat:@"%.7f", place.coordinate.latitude],
                                @"longitude" : [NSString stringWithFormat:@"%.7f", place.coordinate.longitude],
                                @"id" : place.placeID,
-                               @"address" : place.formattedAddress
                                };
-    _result(placeMap);
+    NSMutableDictionary *mutablePlaceMap = placeMap.mutableCopy;
+    if (place.formattedAddress != nil) {
+        mutablePlaceMap[@"address"] = place.formattedAddress;
+    }
+    _result(mutablePlaceMap);
     
 }
 
@@ -63,9 +67,12 @@ UIViewController *vc;
                                @"latitude" : [NSString stringWithFormat:@"%.7f", place.coordinate.latitude],
                                @"longitude" : [NSString stringWithFormat:@"%.7f", place.coordinate.longitude],
                                @"id" : place.placeID,
-                               @"address" : place.formattedAddress
                                };
-    _result(placeMap);
+    NSMutableDictionary *mutablePlaceMap = placeMap.mutableCopy;
+    if (place.formattedAddress != nil) {
+        mutablePlaceMap[@"address"] = place.formattedAddress;
+    }
+    _result(mutablePlaceMap);
 }
 
 - (void)viewController:(nonnull GMSAutocompleteViewController *)viewController didFailAutocompleteWithError:(nonnull NSError *)error {
