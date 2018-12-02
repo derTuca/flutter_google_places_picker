@@ -60,8 +60,9 @@ class GooglePlacesPickerPlugin(): MethodCallHandler, PluginRegistry.ActivityResu
 
   }
 
-  fun showAutocompletePicker(mode: Int) {
-    val intent = PlaceAutocomplete.IntentBuilder(if (mode == 71) PlaceAutocomplete.MODE_OVERLAY else PlaceAutocomplete.MODE_FULLSCREEN).build(mActivity)
+  fun showAutocompletePicker(mode: Int?) {
+    val modeToUse = mode ?: 71
+    val intent = PlaceAutocomplete.IntentBuilder(if (modeToUse == 71) PlaceAutocomplete.MODE_OVERLAY else PlaceAutocomplete.MODE_FULLSCREEN).build(mActivity)
     try {
       mActivity.startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE)
     } catch (e: GooglePlayServicesNotAvailableException) {
