@@ -16,13 +16,13 @@ Google Place Picker and Autocomplete for Flutter
 - Swift
 ```$xslt
 
-GMSPlacesClient.provideApiKey("YOUR_API_KEY")
-GMSSServices.provideApiKey("YOUR_API_KEY")
+GMSPlacesClient.provideAPIKey("YOUR_API_KEY")
+GMSSServices.provideAPIKey("YOUR_API_KEY")
 ```
 - Objective-C
 ```$xslt
-[GMSPlacesClient provideApiKey:@"YOUR_API_KEY"];
-[GMSServices provideApiKey:@"YOUR_API_KEY"];
+[GMSPlacesClient provideAPIKey:@"YOUR_API_KEY"];
+[GMSServices provideAPIKey:@"YOUR_API_KEY"];
 ```
 
 ### Usage

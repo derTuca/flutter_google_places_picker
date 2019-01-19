@@ -1,3 +1,7 @@
+## [0.1.0] - 2019-01-19
+
+* Fixed crashes on iOS devices when canceling the Place Picker or the Autocomplete
+
 ## [0.0.9] - 2018-11-03
 
 * Fixed more Android build errors

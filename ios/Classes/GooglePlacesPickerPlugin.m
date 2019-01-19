@@ -76,11 +76,25 @@ UIViewController *vc;
 }
 
 - (void)viewController:(nonnull GMSAutocompleteViewController *)viewController didFailAutocompleteWithError:(nonnull NSError *)error {
+    [vc dismissViewControllerAnimated:YES completion:nil];
     FlutterError *fError = [FlutterError errorWithCode:@"PLACE_AUTOCOMPLETE_ERROR" message:error.localizedDescription details:nil];
     _result(fError);
 }
 
+- (void)placePicker:(GMSPlacePickerViewController *)viewController didFailWithError:(NSError *)error {
+    [vc dismissViewControllerAnimated:YES completion:nil];
+    FlutterError *fError = [FlutterError errorWithCode:@"PLACE_PICKER_ERROR" message:error.localizedDescription details:nil];
+    _result(fError);
+}
+
 - (void)wasCancelled:(nonnull GMSAutocompleteViewController *)viewController {
+    [vc dismissViewControllerAnimated:YES completion:nil];
+    FlutterError *fError = [FlutterError errorWithCode:@"USER_CANCELED" message:@"User has canceled the operation." details:nil];
+    _result(fError);
+}
+
+- (void)placePickerDidCancel:(GMSPlacePickerViewController *)viewController {
+    [vc dismissViewControllerAnimated:YES completion:nil];
     FlutterError *fError = [FlutterError errorWithCode:@"USER_CANCELED" message:@"User has canceled the operation." details:nil];
     _result(fError);
 }

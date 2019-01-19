@@ -1,6 +1,6 @@
 name: google_places_picker
 description: Flutter plugin for Google Places and Autocomplete.
-version: 0.0.9
+version: 0.1.0
 author: Alexandru Tuca <salexandru.tuca@outlook.com>
 homepage: https://github.com/derTuca/flutter_google_places_picker
 
