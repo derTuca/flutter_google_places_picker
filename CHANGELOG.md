@@ -1,3 +1,7 @@
+## [2.0.0] - 2019-03-16
+
+* Added option to filter options via type filter, restrict bounds, bias bounds and country.
+
 ## [1.0.0] - 2019-03-16
 
 * Removed Place Picker from plugin as it is deprecated by Google

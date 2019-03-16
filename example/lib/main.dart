@@ -23,8 +23,22 @@ class _MyAppState extends State<MyApp> {
 
   _showAutocomplete() async {
     String placeName;
+    var locationBias = LocationBias()
+    ..northEastLat = 20.0
+    ..northEastLng = 20.0
+    ..southWestLat = 0.0
+    ..southWestLng = 0.0;
+
+    var locationRestriction = LocationRestriction()
+      ..northEastLat = 20.0
+      ..northEastLng = 20.0
+      ..southWestLng = 0.0
+      ..southWestLat = 0.0;
+
+    var country = "US";
+
     // Platform messages may fail, so we use a try/catch PlatformException.
-    var place = await PluginGooglePlacePicker.showAutocomplete(PlaceAutocompleteMode.MODE_OVERLAY);
+    var place = await PluginGooglePlacePicker.showAutocomplete(mode: PlaceAutocompleteMode.MODE_OVERLAY, countryCode: country, restriction: locationRestriction, typeFilter: TypeFilter.ESTABLISHMENT);
     placeName = place.name;
 
 
