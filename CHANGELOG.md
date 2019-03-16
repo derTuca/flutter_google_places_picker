@@ -1,3 +1,7 @@
+## [1.0.0] - 2019-03-16
+
+* Removed Place Picker from plugin as it is deprecated by Google
+
 ## [0.1.0] - 2019-01-19
 
 * Fixed crashes on iOS devices when canceling the Place Picker or the Autocomplete
@@ -17,7 +21,6 @@
 ## [0.0.6] - 2018-09-21
 
 * Fixed scenario where random point selected in the Place Picker would crash the app due to no address
-
 
 ## [0.0.5] - 2018-09-03
 

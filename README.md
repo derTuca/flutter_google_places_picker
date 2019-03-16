@@ -37,7 +37,7 @@ google_places_picker:
 
 The initialization steps for the old version of the plugin are as follows:
 1. Go to your `AndroidManifest.xml` at `android/app/src/main` and add the following in between the `application` opening and closing tag, replacing `YOUR_API_KEY` with your api key, which you can get from the Google Developer Console:
-```
+```xml
 <meta-data
       android:name="com.google.android.geo.API_KEY"
       android:value="YOUR_API_KEY"/>
