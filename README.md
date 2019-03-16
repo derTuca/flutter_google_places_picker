@@ -31,7 +31,7 @@ As of 2019-01-27, the Place Picker has been deprecated by Google. As such, this 
 ```yaml
 google_places_picker:
     git:
-      url: https://github.com/derTuca/flutter-contacts-plugin.git
+      url: https://github.com/derTuca/flutter_google_places_picker.git
       ref: legacy
 ```
 
