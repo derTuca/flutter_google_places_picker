@@ -6,15 +6,18 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
-import com.google.android.gms.location.places.ui.PlaceAutocomplete
-import com.google.android.gms.location.places.ui.PlacePicker
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.AutocompleteActivity
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.Registrar
-
+import java.lang.Exception
 
 
 class GooglePlacesPickerPlugin(): MethodCallHandler, PluginRegistry.ActivityResultListener {
@@ -22,11 +25,10 @@ class GooglePlacesPickerPlugin(): MethodCallHandler, PluginRegistry.ActivityResu
   var mResult: Result? = null
 
   companion object {
-    val PLACE_PICKER_REQUEST_CODE = 131070
     val PLACE_AUTOCOMPLETE_REQUEST_CODE = 131071
 
     @JvmStatic
-    fun registerWith(registrar: Registrar): Unit {
+    fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "plugin_google_place_picker")
       val instance = GooglePlacesPickerPlugin().apply {
         mActivity = registrar.activity()
@@ -36,33 +38,41 @@ class GooglePlacesPickerPlugin(): MethodCallHandler, PluginRegistry.ActivityResu
     }
   }
 
-  override fun onMethodCall(call: MethodCall, result: Result): Unit {
+  override fun onMethodCall(call: MethodCall, result: Result) {
     mResult = result
-    if (call.method.equals("showPlacePicker")) {
-      showPlacesPicker()
-    } else if (call.method.equals("showAutocomplete")) {
+    if (call.method.equals("showAutocomplete")) {
       showAutocompletePicker(call.argument("mode"))
+    } else if (call.method.equals("initialize")) {
+      initialize(call.argument("androidApiKey"))
     } else {
       result.notImplemented()
     }
   }
 
-  fun showPlacesPicker() {
-    val builder = PlacePicker.IntentBuilder()
-    try {
-      mActivity.startActivityForResult(builder.build(mActivity), PLACE_PICKER_REQUEST_CODE)
-    } catch (e: GooglePlayServicesRepairableException) {
-      mResult?.error("GooglePlayServicesRepairableException", e.message, null)
-    } catch (e: GooglePlayServicesNotAvailableException) {
-      mResult?.error("GooglePlayServicesNotAvailableException", e.message, null)
+  fun initialize(apiKey: String?) {
+    if (apiKey.isNullOrEmpty()) {
+      mResult?.error("API_KEY_ERROR", "Invalid Android API Key", null)
+      return
     }
-
-
+    try {
+      if (!Places.isInitialized()) {
+        Places.initialize(mActivity, apiKey)
+      }
+      mResult?.success(null)
+    } catch (e: Exception) {
+      mResult?.error("API_KEY_ERROR", e.localizedMessage, null)
+    }
   }
 
   fun showAutocompletePicker(mode: Int?) {
     val modeToUse = mode ?: 71
-    val intent = PlaceAutocomplete.IntentBuilder(if (modeToUse == 71) PlaceAutocomplete.MODE_OVERLAY else PlaceAutocomplete.MODE_FULLSCREEN).build(mActivity)
+    val fields = listOf(
+            Place.Field.ID,
+            Place.Field.ADDRESS,
+            Place.Field.NAME,
+            Place.Field.LAT_LNG
+            )
+    val intent = Autocomplete.IntentBuilder(if (modeToUse == 71) AutocompleteActivityMode.OVERLAY else AutocompleteActivityMode.FULLSCREEN, fields).build(mActivity)
     try {
       mActivity.startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE)
     } catch (e: GooglePlayServicesNotAvailableException) {
@@ -74,38 +84,23 @@ class GooglePlacesPickerPlugin(): MethodCallHandler, PluginRegistry.ActivityResu
   }
 
   override fun onActivityResult(p0: Int, p1: Int, p2: Intent?): Boolean {
-    if (p1 == RESULT_OK) {
+    if (p1 == RESULT_OK && p2 != null) {
       when (p0) {
-        PLACE_PICKER_REQUEST_CODE -> {
-          val place = PlacePicker.getPlace(mActivity, p2)
-          val placeMap = mutableMapOf<String, Any>()
-          placeMap.put("latitude", place.latLng.latitude.toString() + "")
-          placeMap.put("longitude", place.latLng.longitude.toString() + "")
-          placeMap.put("id", place.id)
-          placeMap.put("name", place.name.toString())
-          placeMap.put("address", place.address.toString())
-          mResult?.success(placeMap)
-          return true
-
-        }
         PLACE_AUTOCOMPLETE_REQUEST_CODE -> {
-          val place = PlaceAutocomplete.getPlace(mActivity, p2)
+          val place = Autocomplete.getPlaceFromIntent(p2)
           val placeMap = mutableMapOf<String, Any>()
-          placeMap.put("latitude", place.latLng.latitude)
-          placeMap.put("longitude", place.latLng.longitude)
-          placeMap.put("id", place.id)
-          placeMap.put("name", place.name.toString())
-          placeMap.put("address", place.address.toString())
+          placeMap.put("latitude", place.latLng?.latitude ?: 0.0)
+          placeMap.put("longitude", place.latLng?.longitude ?: 0.0)
+          placeMap.put("id", place.id ?: "")
+          placeMap.put("name", place.name ?: "")
+          placeMap.put("address", place.address ?: "")
           mResult?.success(placeMap)
           return true
         }
       }
-    } else if (p1 == PlaceAutocomplete.RESULT_ERROR) {
-      val status = PlaceAutocomplete.getStatus(mActivity, p2)
+    } else if (p1 == AutocompleteActivity.RESULT_ERROR && p2 != null) {
+      val status = Autocomplete.getStatusFromIntent(p2)
       mResult?.error("PLACE_AUTOCOMPLETE_ERROR", status.statusMessage, null)
-    } else if (p1 == PlacePicker.RESULT_ERROR) {
-      val status = PlacePicker.getStatus(mActivity, p2)
-      mResult?.error("PLACE_PICKER_ERROR", status.statusMessage, null)
     } else if (p1 == RESULT_CANCELED) {
       mResult?.error("USER_CANCELED", "User has canceled the operation.", null)
     } else {

@@ -3,18 +3,14 @@ PODS:
   - google_places_picker (0.0.3):
     - Flutter
     - GoogleMaps
-    - GooglePlacePicker
     - GooglePlaces
-  - GoogleMaps (2.7.0):
-    - GoogleMaps/Maps (= 2.7.0)
-  - GoogleMaps/Base (2.7.0)
-  - GoogleMaps/Maps (2.7.0):
+  - GoogleMaps (3.0.3):
+    - GoogleMaps/Maps (= 3.0.3)
+  - GoogleMaps/Base (3.0.3)
+  - GoogleMaps/Maps (3.0.3):
     - GoogleMaps/Base
-  - GooglePlacePicker (2.7.0):
-    - GoogleMaps (= 2.7.0)
-    - GooglePlaces (= 2.7.0)
-  - GooglePlaces (2.7.0):
-    - GoogleMaps/Base (= 2.7.0)
+  - GooglePlaces (3.0.3):
+    - GoogleMaps/Base (= 3.0.3)
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios`)
@@ -23,7 +19,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - GoogleMaps
-    - GooglePlacePicker
     - GooglePlaces
 
 EXTERNAL SOURCES:
@@ -34,10 +29,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  google_places_picker: 6c40a93f3d9bf86a445f2c341b372af93ad142ec
-  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
-  GooglePlacePicker: 59ea44db173c58486ad6123993e81feefcbce9c3
-  GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  google_places_picker: 7e860ca47fb342ef7be52fd715a5d97a882ee9a6
+  GoogleMaps: fd5c9fa58871781b9fb94d4936f19c69fe60ce32
+  GooglePlaces: f09e76993c9c3ee4af8f4f7f535bb94d6aa3b649
 
 PODFILE CHECKSUM: 1e5af4103afd21ca5ead147d7b81d06f494f51a2
 

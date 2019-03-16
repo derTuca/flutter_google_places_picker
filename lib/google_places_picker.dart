@@ -20,17 +20,20 @@ class PluginGooglePlacePicker {
   static const MethodChannel _channel =
       const MethodChannel('plugin_google_place_picker');
 
-  static Future<Place> showPlacePicker() async {
-    final Map placeMap = await _channel.invokeMethod('showPlacePicker');
+  static Future<Place> showAutocomplete(PlaceAutocompleteMode mode) async {
+    // Random values
+    var argMap = {
+      "mode": mode == PlaceAutocompleteMode.MODE_OVERLAY ? 71 : 72
+    };
+    final Map placeMap = await _channel.invokeMethod('showAutocomplete', argMap);
     return _initPlaceFromMap(placeMap);
   }
 
-  static Future<Place> showAutocomplete(PlaceAutocompleteMode mode) async {
-    var argMap = new Map();
-//    Random values
-    argMap["mode"] = mode == PlaceAutocompleteMode.MODE_OVERLAY ? 71 : 72;
-    final Map placeMap = await _channel.invokeMethod('showAutocomplete', argMap);
-    return _initPlaceFromMap(placeMap);
+  static Future<void> initialize({ String androidApiKey, String iosApiKey}) async {
+    final result = await _channel.invokeMethod('initialize', {
+      "androidApiKey": androidApiKey,
+      "iosApiKey": iosApiKey
+    });
   }
 
   static Place _initPlaceFromMap(Map placeMap) {
