@@ -41,6 +41,6 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'com.google.android.libraries.places:places:1.0.0'
+    api 'com.google.android.libraries.places:places:1.1.0'
 
 }

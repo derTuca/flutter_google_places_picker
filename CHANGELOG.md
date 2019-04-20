@@ -1,3 +1,7 @@
+## [2.0.1] - 2019-04-20
+
+* Added check for request code in `onActivityResult` so we don't swallow other plugins' callbacks.
+
 ## [2.0.0] - 2019-03-16
 
 * Added option to filter options via type filter, restrict bounds, bias bounds and country.

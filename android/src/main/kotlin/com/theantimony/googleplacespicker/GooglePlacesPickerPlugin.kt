@@ -133,20 +133,19 @@ class GooglePlacesPickerPlugin() : MethodCallHandler, PluginRegistry.ActivityRes
     }
 
     override fun onActivityResult(p0: Int, p1: Int, p2: Intent?): Boolean {
+        if (p0 != PLACE_AUTOCOMPLETE_REQUEST_CODE) {
+            return false
+        }
         if (p1 == RESULT_OK && p2 != null) {
-            when (p0) {
-                PLACE_AUTOCOMPLETE_REQUEST_CODE -> {
-                    val place = Autocomplete.getPlaceFromIntent(p2)
-                    val placeMap = mutableMapOf<String, Any>()
-                    placeMap.put("latitude", place.latLng?.latitude ?: 0.0)
-                    placeMap.put("longitude", place.latLng?.longitude ?: 0.0)
-                    placeMap.put("id", place.id ?: "")
-                    placeMap.put("name", place.name ?: "")
-                    placeMap.put("address", place.address ?: "")
-                    mResult?.success(placeMap)
-                    return true
-                }
-            }
+            val place = Autocomplete.getPlaceFromIntent(p2)
+            val placeMap = mutableMapOf<String, Any>()
+            placeMap.put("latitude", place.latLng?.latitude ?: 0.0)
+            placeMap.put("longitude", place.latLng?.longitude ?: 0.0)
+            placeMap.put("id", place.id ?: "")
+            placeMap.put("name", place.name ?: "")
+            placeMap.put("address", place.address ?: "")
+            mResult?.success(placeMap)
+            return true
         } else if (p1 == AutocompleteActivity.RESULT_ERROR && p2 != null) {
             val status = Autocomplete.getStatusFromIntent(p2)
             mResult?.error("PLACE_AUTOCOMPLETE_ERROR", status.statusMessage, null)
