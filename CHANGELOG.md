@@ -1,3 +1,7 @@
+## [2.0.2] - 2019-05-24
+
+* Updated Android Gradle and Kotlin versions.
+
 ## [2.0.1] - 2019-04-20
 
 * Added check for request code in `onActivityResult` so we don't swallow other plugins' callbacks.
