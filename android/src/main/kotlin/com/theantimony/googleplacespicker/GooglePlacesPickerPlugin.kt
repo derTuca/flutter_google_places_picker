@@ -72,7 +72,7 @@ class GooglePlacesPickerPlugin() : MethodCallHandler, PluginRegistry.ActivityRes
         }
         try {
             if (!Places.isInitialized()) {
-                Places.initialize(mActivity, apiKey)
+                Places.initialize(mActivity.applicationContext, apiKey!!)
             }
             mResult?.success(null)
         } catch (e: Exception) {
