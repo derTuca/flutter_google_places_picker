@@ -1,3 +1,7 @@
+## [2.0.2+1] - 2019-06-03
+
+* Fixed Kotlin Smart Cast not working on certain setups.
+
 ## [2.0.2] - 2019-05-24
 
 * Updated Android Gradle and Kotlin versions.
