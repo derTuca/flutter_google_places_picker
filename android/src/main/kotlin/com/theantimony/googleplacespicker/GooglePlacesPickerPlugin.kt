@@ -98,16 +98,16 @@ class GooglePlacesPickerPlugin() : MethodCallHandler, PluginRegistry.ActivityRes
 
         bias?.let {
             val locationBias = RectangularBounds.newInstance(
-                    LatLng(it["northEastLat"] ?: 0.0, it["northEastLng"] ?: 0.0),
-                    LatLng(it["southWestLat"] ?: 0.0, it["southWestLng"] ?: 0.0)
+                    LatLng(it["southWestLat"] ?: 0.0, it["southWestLng"] ?: 0.0),
+                    LatLng(it["northEastLat"] ?: 0.0, it["northEastLng"] ?: 0.0)
             )
             intentBuilder = intentBuilder.setLocationBias(locationBias)
         }
 
         restriction?.let {
             val locationRestriction = RectangularBounds.newInstance(
-                    LatLng(it["northEastLat"] ?: 0.0, it["northEastLng"] ?: 0.0),
-                    LatLng(it["southWestLat"] ?: 0.0, it["southWestLng"] ?: 0.0)
+                    LatLng(it["southWestLat"] ?: 0.0, it["southWestLng"] ?: 0.0),
+                    LatLng(it["northEastLat"] ?: 0.0, it["northEastLng"] ?: 0.0)
             )
             intentBuilder = intentBuilder.setLocationRestriction(locationRestriction)
         }
