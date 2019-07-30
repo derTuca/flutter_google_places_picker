@@ -1,3 +1,7 @@
+## [2.1.0] - 2019-07-30
+
+* Fixed wrong mapping of location bias on Android (north was swapped with south)
+
 ## [2.0.2+1] - 2019-06-03
 
 * Fixed Kotlin Smart Cast not working on certain setups.
