@@ -1,3 +1,7 @@
+## [2.0.2+2] - 2019-09-16
+
+* Fixed swapped north-east and south-west coordinated on `bias` and `restriction`.
+
 ## [2.0.2+1] - 2019-06-03
 
 * Fixed Kotlin Smart Cast not working on certain setups.
