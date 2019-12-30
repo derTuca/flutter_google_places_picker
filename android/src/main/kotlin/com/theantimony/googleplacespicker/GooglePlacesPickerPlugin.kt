@@ -35,7 +35,7 @@ class GooglePlacesPickerPlugin() : MethodCallHandler, PluginRegistry.ActivityRes
     )
 
     companion object {
-        const val PLACE_AUTOCOMPLETE_REQUEST_CODE = 131071
+        const val PLACE_AUTOCOMPLETE_REQUEST_CODE = 57864
 
         @JvmStatic
         fun registerWith(registrar: Registrar) {
