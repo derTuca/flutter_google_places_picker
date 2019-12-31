@@ -1,7 +1,6 @@
 name: google_places_picker
 description: Flutter plugin for Google Places and Autocomplete.
-version: 2.0.2+2
-author: Alexandru Tuca <salexandru.tuca@outlook.com>
+version: 2.1.0
 homepage: https://github.com/derTuca/flutter_google_places_picker
 
 dependencies:
@@ -11,13 +10,17 @@ dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 environment:
-  sdk: ">=1.19.0 <3.0.0"
-  flutter: ">=0.2.4 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
+  flutter: ">=1.10.0 <2.0.0"
 # The following section is specific to Flutter.
 flutter:
   plugin:
-    androidPackage: com.theantimony.googleplacespicker
-    pluginClass: GooglePlacesPickerPlugin
+    platforms:
+      android:
+        package: com.theantimony.googleplacespicker
+        pluginClass: GooglePlacesPickerPlugin
+      ios:
+        pluginClass: GooglePlacesPickerPlugin
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

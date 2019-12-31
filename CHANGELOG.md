@@ -1,3 +1,9 @@
+## [2.1.0] - 2019-12-31
+
+* Updated plugin to use v2 Android embedding
+* Lowered Intent request code so it fits in the lower 16bits
+* Updated Android Google Places SDK
+
 ## [2.0.2+2] - 2019-09-16
 
 * Fixed swapped north-east and south-west coordinated on `bias` and `restriction`.
