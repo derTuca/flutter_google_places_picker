@@ -16,8 +16,8 @@ class _MyAppState extends State<MyApp> {
   initState() {
     super.initState();
     PluginGooglePlacePicker.initialize(
-      androidApiKey: "YOUR_ANDROID_API_KEY",
-      iosApiKey: "YOUR_IOS_API_KEY",
+      androidApiKey: "AIzaSyCYMo_pQgnGm0IQNJKn84Y58yfjVvgLR2E",
+      iosApiKey: "AIzaSyCYMo_pQgnGm0IQNJKn84Y58yfjVvgLR2E",
     );
   }
 
