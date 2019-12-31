@@ -181,7 +181,9 @@ class GooglePlacesPickerPlugin() : FlutterPlugin, MethodCallHandler, PluginRegis
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         mActivity = null
         mChannel?.setMethodCallHandler(null)
+        mBinding?.removeActivityResultListener(this)
         mChannel = null
+        mBinding = null
     }
 
     override fun onDetachedFromActivity() {

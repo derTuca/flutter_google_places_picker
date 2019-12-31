@@ -1,3 +1,7 @@
+## [2.1.0+1] - 2019-12-31
+
+* Removed memory leak introduced in latest update.
+
 ## [2.1.0] - 2019-12-31
 
 * Updated plugin to use v2 Android embedding
