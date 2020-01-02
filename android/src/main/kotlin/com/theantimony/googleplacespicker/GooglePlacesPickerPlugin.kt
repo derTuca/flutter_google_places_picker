@@ -155,7 +155,7 @@ class GooglePlacesPickerPlugin() : FlutterPlugin, MethodCallHandler, PluginRegis
 
     override fun onActivityResult(p0: Int, p1: Int, p2: Intent?): Boolean {
         if (p0 != PLACE_AUTOCOMPLETE_REQUEST_CODE) {
-            return true
+            return false
         }
         if (p1 == RESULT_OK && p2 != null) {
             val place = Autocomplete.getPlaceFromIntent(p2)
@@ -166,7 +166,6 @@ class GooglePlacesPickerPlugin() : FlutterPlugin, MethodCallHandler, PluginRegis
             placeMap.put("name", place.name ?: "")
             placeMap.put("address", place.address ?: "")
             mResult?.success(placeMap)
-            return true
         } else if (p1 == AutocompleteActivity.RESULT_ERROR && p2 != null) {
             val status = Autocomplete.getStatusFromIntent(p2)
             mResult?.error("PLACE_AUTOCOMPLETE_ERROR", status.statusMessage, null)
@@ -175,7 +174,7 @@ class GooglePlacesPickerPlugin() : FlutterPlugin, MethodCallHandler, PluginRegis
         } else {
             mResult?.error("UNKNOWN", "Unknown error.", null)
         }
-        return false
+        return true
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {

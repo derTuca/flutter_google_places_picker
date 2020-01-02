@@ -1,3 +1,7 @@
+## [2.1.0+2] - 2019-12-31
+
+* Changed onActivityResult return value so other plugins work.
+
 ## [2.1.0+1] - 2019-12-31
 
 * Removed memory leak introduced in latest update.
