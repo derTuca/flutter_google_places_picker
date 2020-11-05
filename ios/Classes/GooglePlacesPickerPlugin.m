@@ -52,8 +52,11 @@ NSDictionary *filterTypes;
     
     GMSAutocompleteViewController *autocompleteController = [[GMSAutocompleteViewController alloc] init];
     
+    GMSAutocompleteFilter *autocompleteFilter = [[GMSAutocompleteFilter alloc] init];
+    autocompleteController.autocompleteFilter = autocompleteFilter;
+
+    
     if (![filter isEqual:[NSNull null]] || ![country isEqual:[NSNull null]]) {
-        GMSAutocompleteFilter *autocompleteFilter = [[GMSAutocompleteFilter alloc] init];
         if (![filter isEqual:[NSNull null]]) {
             autocompleteFilter.type = [filterTypes[filter] intValue];
         } else {
@@ -64,34 +67,34 @@ NSDictionary *filterTypes;
             autocompleteFilter.country = country;
         }
         
-        autocompleteController.autocompleteFilter = autocompleteFilter;
         
     }
     
     if (![boundsDictionary isEqual:[NSNull null]] || ![restriction isEqual:[NSNull null]]) {
-        double neLat;
-        double neLng;
-        double swLat;
-        double swLng;
         
         if (![restriction isEqual:[NSNull null]]) {
-            neLat = [restriction[@"northEastLat"] doubleValue];
-            neLng = [restriction[@"northEastLng"] doubleValue];
-            swLat = [restriction[@"southWestLat"] doubleValue];
-            swLng = [restriction[@"southWestLng"] doubleValue];
-            autocompleteController.autocompleteBoundsMode = kGMSAutocompleteBoundsModeRestrict;
+            double neLat = [restriction[@"northEastLat"] doubleValue];
+            double neLng = [restriction[@"northEastLng"] doubleValue];
+            double swLat = [restriction[@"southWestLat"] doubleValue];
+            double swLng = [restriction[@"southWestLng"] doubleValue];
+            
+            CLLocationCoordinate2D neCoordinate = CLLocationCoordinate2DMake(neLat, neLng);
+            CLLocationCoordinate2D swCoordinate = CLLocationCoordinate2DMake(swLat, swLng);
+            
+            autocompleteFilter.locationRestriction = GMSPlaceRectangularLocationOption(neCoordinate, swCoordinate);
+            
         } else {
-            neLat = [boundsDictionary[@"northEastLat"] doubleValue];
-            neLng = [boundsDictionary[@"northEastLng"] doubleValue];
-            swLat = [boundsDictionary[@"southWestLat"] doubleValue];
-            swLng = [boundsDictionary[@"southWestLng"] doubleValue];
+            double neLat = [boundsDictionary[@"northEastLat"] doubleValue];
+            double neLng = [boundsDictionary[@"northEastLng"] doubleValue];
+            double swLat = [boundsDictionary[@"southWestLat"] doubleValue];
+            double swLng = [boundsDictionary[@"southWestLng"] doubleValue];
+            
+            CLLocationCoordinate2D neCoordinate = CLLocationCoordinate2DMake(neLat, neLng);
+            CLLocationCoordinate2D swCoordinate = CLLocationCoordinate2DMake(swLat, swLng);
+            
+            autocompleteFilter.locationBias = GMSPlaceRectangularLocationOption(neCoordinate, swCoordinate);
         }
-        CLLocationCoordinate2D neCoordinate = CLLocationCoordinate2DMake(neLat, neLng);
-        CLLocationCoordinate2D swCoordinate = CLLocationCoordinate2DMake(swLat, swLng);
-        
-        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:neCoordinate coordinate:swCoordinate];
-        autocompleteController.autocompleteBounds = bounds;
-        
+                
     }
     
     autocompleteController.delegate = self;

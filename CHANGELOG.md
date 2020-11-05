@@ -1,3 +1,9 @@
+## [2.1.0+3] - 2020-11-04
+
+* Fixed build errors on iOS caused by the 4.0.0 release of the Places iOS SDK.
+* Locked the Places iOS SDK to '~>4.0'.
+* Updated Kotlin version for Android. 
+
 ## [2.1.0+2] - 2019-12-31
 
 * Changed onActivityResult return value so other plugins work.

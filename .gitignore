@@ -9,3 +9,7 @@ gradlew
 pubspec.lock
 
 build/
+
+**/.flutter-plugins-dependencies
+**/.last_build_id
+**/flutter_export_environment.sh
