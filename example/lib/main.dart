@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_places_picker/google_places_picker.dart';
 
-
 void main() => runApp(new MyApp());
 
 class MyApp extends StatefulWidget {
@@ -24,10 +23,10 @@ class _MyAppState extends State<MyApp> {
   _showAutocomplete() async {
     String placeName;
     var locationBias = LocationBias()
-    ..northEastLat = 20.0
-    ..northEastLng = 20.0
-    ..southWestLat = 0.0
-    ..southWestLng = 0.0;
+      ..northEastLat = 20.0
+      ..northEastLng = 20.0
+      ..southWestLat = 0.0
+      ..southWestLng = 0.0;
 
     var locationRestriction = LocationRestriction()
       ..northEastLat = 20.0
@@ -38,15 +37,17 @@ class _MyAppState extends State<MyApp> {
     var country = "US";
 
     // Platform messages may fail, so we use a try/catch PlatformException.
-    var place = await PluginGooglePlacePicker.showAutocomplete(mode: PlaceAutocompleteMode.MODE_OVERLAY, countryCode: country, restriction: locationRestriction, typeFilter: TypeFilter.ESTABLISHMENT);
-    placeName = place.name;
-
+    var place = await PluginGooglePlacePicker.showAutocomplete(
+        mode: PlaceAutocompleteMode.MODE_OVERLAY,
+        countryCode: country,
+        restriction: locationRestriction,
+        typeFilter: TypeFilter.ESTABLISHMENT);
+    placeName = place.name ?? "Null place name!";
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
-    if (!mounted)
-      return;
+    if (!mounted) return;
 
     setState(() {
       _placeName = placeName;
@@ -63,8 +64,10 @@ class _MyAppState extends State<MyApp> {
         body: new Center(
           child: new Column(
             children: <Widget>[
-              new FlatButton(onPressed: _showAutocomplete, child: new Text("Show autocomplete")),
-              new Row(
+              TextButton(
+                  onPressed: _showAutocomplete,
+                  child: new Text("Show autocomplete")),
+              Row(
                 children: <Widget>[
                   new Text("Place name: "),
                   new Text(_placeName)
