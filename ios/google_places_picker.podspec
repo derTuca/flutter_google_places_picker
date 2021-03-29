@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.version          = '0.0.3'
   s.summary          = 'Flutter plugin for Google Places and Autocomplete'
   s.description      = <<-DESC
-  Flutter plugin for Google Places and Autocomplete
+  Flutter plugin for Google Places Autocomplete
                        DESC
   s.homepage         = 'https://github.com/derTuca/flutter_google_places_picker'
   s.license          = { :file => '../LICENSE' }
@@ -16,7 +16,6 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.dependency 'GooglePlaces', '~> 4.0'
-  s.dependency 'GoogleMaps', '~> 4.0'
   s.static_framework = true
   s.ios.deployment_target = '9.0'
 end

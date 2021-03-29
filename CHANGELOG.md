@@ -1,3 +1,7 @@
+## [3.0.1] - 2021-03-30
+
+- Removed Google Maps Dependency for iOS.
+
 ## [3.0.0-nullsafety.0] - 2021-03-06
 
 - Migrated to null safety.
