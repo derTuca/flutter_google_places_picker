@@ -1,3 +1,7 @@
+## [3.0.2] - 2021-04-20
+
+- Set text color for dark mode on iOS.
+
 ## [3.0.1] - 2021-03-30
 
 - Removed Google Maps Dependency for iOS.
