@@ -13,3 +13,4 @@ build/
 **/.flutter-plugins-dependencies
 **/.last_build_id
 **/flutter_export_environment.sh
+.fvm/flutter_sdk
