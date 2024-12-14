@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'GooglePlaces', '~> 4.0'
+  s.dependency 'GooglePlaces', '>= 7.0'
   s.static_framework = true
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '14.0'
 end
 
