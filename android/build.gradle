@@ -43,6 +43,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api 'com.google.android.libraries.places:places:2.4.0'
     api 'androidx.appcompat:appcompat:1.2.0'
+    implementation ("com.android.volley:volley:1.2.1")
 
 
 }
